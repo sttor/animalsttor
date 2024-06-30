@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request Info Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Open Graph meta tags for better sharing on social media -->
+    <meta property="og:title" content="Request Info Page">
+    <meta property="og:description" id="og-description" content="Loading...">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // List of animals with descriptions
+            const animals = [
+                { name: "Elephant", description: "A large mammal with a trunk.", image: "elephant.jpg" },
+                { name: "Tiger", description: "A large cat with stripes.", image: "tiger.jpg" },
+                { name: "Dolphin", description: "A marine mammal known for its intelligence.", image: "dolphin.jpg" },
+                { name: "Eagle", description: "A bird of prey with a powerful beak.", image: "eagle.jpg" },
+                { name: "Kangaroo", description: "A marsupial from Australia with strong hind legs.", image: "kangaroo.jpg" },
+                { name: "Penguin", description: "A flightless bird known for its black and white coloring.", image: "penguin.jpg" },
+                { name: "Panda", description: "A bear native to China known for its distinctive black and white fur.", image: "panda.jpg" },
+                { name: "Lion", description: "The king of the jungle, known for its majestic mane.", image: "lion.jpg" },
+                { name: "Shark", description: "A powerful fish known for its sharp teeth.", image: "shark.jpg" },
+                { name: "Giraffe", description: "The tallest land animal with a long neck.", image: "giraffe.jpg" }
+            ];
+
+            // Select a random animal
+            const randomAnimal = animals[Math.floor(Math.random() * animals.length)];
+
+            // Get the URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const params = Object.fromEntries(urlParams.entries());
+
+            // Get the path
+            const path = window.location.pathname;
+
+            // Get the user agent
+            const userAgent = navigator.userAgent;
+
+            // Create the message
+            const message = `Path: ${path}, Parameters: ${JSON.stringify(params)}, User Agent: ${userAgent}, Selected Animal: ${randomAnimal.name}, Description: ${randomAnimal.description}`;
+
+            // Display the message in the h1 tag
+            document.getElementById("info").innerText = message;
+
+            // Display the animal description in the body
+            document.getElementById("animal-info").innerText = `Selected Animal: ${randomAnimal.name}, Description: ${randomAnimal.description}`;
+
+            // Set Open Graph meta tags
+            document.querySelector('meta[property="og:description"]').setAttribute("content", randomAnimal.description);
+            document.querySelector('meta[property="og:url"]').setAttribute("content", window.location.href);
+            document.querySelector('meta[property="og:image"]').setAttribute("content", `https://your-username.github.io/request-info-page/images/${randomAnimal.image}`);
+        });
+    </script>
+</head>
+<body>
+    <h1 id="info">Loading...</h1>
+    <p id="animal-info"></p>
+</body>
+</html>
